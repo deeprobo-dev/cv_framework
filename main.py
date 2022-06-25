@@ -158,10 +158,10 @@ def train_model(model, device, norm, start_epoch, epochs, batch_size, learning_r
     print("*****Training Stops*****\n")
     print("\n****************************************************************************\n")
 
-    # print("\n****************************************************************************\n")
-    # print("*****Loss and Accuracy Details*****\n")
-    # plot_single("model_1", train_loss, train_accuracy, test_loss, test_accuracy)
-    # print("\n****************************************************************************\n")
+    print("\n****************************************************************************\n")
+    print("*****Loss and Accuracy Details*****\n")
+    plot_single("model_1", train_loss, train_accuracy, test_loss, test_accuracy)
+    print("\n****************************************************************************\n")
 
     return model
 
@@ -204,29 +204,29 @@ def main(lr = args.lr, batch_size = args.b, epochs = args.e, norm = args.norm, n
 
     print("\n****************************************************************************\n")
 
-    # print("*****Correctly Classified Images*****\n")
+    print("*****Correctly Classified Images*****\n")
 
-    # image_prediction("CIFAR10", model, "Correctly Classified Images", n=n,r=int(n/5),c=5, misclassified = False, gradcam=False)
+    image_prediction("CIFAR10", model, "Correctly Classified Images", n=n,r=int(n/5),c=5, misclassified = False, gradcam=False)
 
-    # print("\n****************************************************************************\n")
+    print("\n****************************************************************************\n")
 
-    # print("*****Correctly Classified GradCam Images*****\n")
+    print("*****Correctly Classified GradCam Images*****\n")
 
-    # image_prediction("CIFAR10", model, "Correctly Classified GradCam Images", n=n,r=int(n/5),c=5, misclassified = False, gradcam=True)
+    image_prediction("CIFAR10", model, "Correctly Classified GradCam Images", n=n,r=int(n/5),c=5, misclassified = False, gradcam=True)
 
-    # print("\n****************************************************************************\n")
+    print("\n****************************************************************************\n")
 
-    # print("*****Misclassified Images*****\n")
+    print("*****Misclassified Images*****\n")
 
-    # image_prediction("CIFAR10", model, "Misclassified Images", n=n,r=int(n/5),c=5, misclassified = True, gradcam=False)
+    image_prediction("CIFAR10", model, "Misclassified Images", n=n,r=int(n/5),c=5, misclassified = True, gradcam=False)
 
-    # print("\n****************************************************************************\n")
+    print("\n****************************************************************************\n")
 
-    # print("*****Misclassified GradCam Images*****\n")
+    print("*****Misclassified GradCam Images*****\n")
 
-    # image_prediction("CIFAR10", model, "Misclassified GradCam Images", n=n,r=int(n/5),c=5, misclassified = True, gradcam=True)
+    image_prediction("CIFAR10", model, "Misclassified GradCam Images", n=n,r=int(n/5),c=5, misclassified = True, gradcam=True)
 
-    # print("\n****************************************************************************\n")
+    print("\n****************************************************************************\n")
 
 if __name__ == "__main__":
     main()
