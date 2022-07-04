@@ -1,1 +1,1 @@
-from .resnet import *
+from .resnet_32x32 import *

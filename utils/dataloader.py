@@ -6,6 +6,15 @@ import matplotlib.pyplot as plt
 
 from .transform import get_transforms
 
+
+
+# class CustomAnimalData():
+#     def __init__(self, data_path, class_details, train = True, transform = None, viz = False):
+#         self.viz = viz
+
+#     def __getitem__(self, index):
+#         pass
+
 class Cifar10Dataset(datasets.CIFAR10):
     
     def __init__(self, root = "./data", train = True, download = True, transform = None, viz = False):
@@ -61,7 +70,7 @@ def dataloaders(data, train_batch_size = None, val_batch_size = None, seed=42):
     
     train_batch_size = train_batch_size or (128 if cuda else 64)
     val_batch_size = val_batch_size or (128 if cuda else 64)
-    print(train_batch_size, val_batch_size)
+    # print(train_batch_size, val_batch_size)
 
     train_dataloader_args = dict(shuffle=True, batch_size=train_batch_size, num_workers=4, pin_memory=True)
     val_dataloader_args = dict(shuffle=True, batch_size=val_batch_size, num_workers=4, pin_memory=True) 
