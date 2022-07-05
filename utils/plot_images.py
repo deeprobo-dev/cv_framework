@@ -51,7 +51,7 @@ def inverse_normalize(tensor, mean=(0.49139968, 0.48215841, 0.44653091), std=(0.
 
 def image_prediction(data_name, model, title, n=20,r=5,c=4, misclassified = True, gradcam=False):
     model.eval()
-    _, test_loader = dataloaders(data_name, val_batch_size=1)
+    _, test_loader, _ = dataloaders(data_name, val_batch_size=1)
     classes = data_details(data_name, cols=5, rows=2, train_data=True, transform=False, vis = False)
     wrong = []
     right = []
@@ -84,7 +84,7 @@ def image_prediction(data_name, model, title, n=20,r=5,c=4, misclassified = True
         plot_pred_images(right, title, classes, r, c)
 
     elif gradcam and misclassified:
-        plot_gradcam_images(model, wrong[:n], title, classes, r, c)
+        plot_gradcam_images(model, wrong, title, classes, r, c)
 
     else:
-        plot_gradcam_images(model, right[:n], title, classes, r, c)
+        plot_gradcam_images(model, right, title, classes, r, c)

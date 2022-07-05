@@ -5,7 +5,7 @@ import os
 from tqdm import tqdm
 
 
-def test(model, device, test_loader, criterion, epoch, best_acc):
+def test(name, model, device, test_loader, criterion, epoch, best_acc):
     model.eval()
 
     correct = 0
@@ -42,7 +42,7 @@ def test(model, device, test_loader, criterion, epoch, best_acc):
         }
         if not os.path.isdir('checkpoint'):
             os.mkdir('checkpoint')
-        torch.save(state, './checkpoint/ckpt.pth')
+        torch.save(state, './checkpoint/'+ name +'.pth')
         best_acc = epoch_accuracy
     
     return epoch_accuracy, epoch_loss, best_acc
