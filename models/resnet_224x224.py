@@ -181,7 +181,6 @@ def ResNet18(pretrained=False, **kwargs):
         pretrained (bool): If True, returns a model pre-trained on ImageNet
     """
     model = ResNet(BasicBlock, [2, 2, 2, 2])
-    print(kwargs["num_classes"])
     if pretrained:
         model.load_state_dict(model_zoo.load_url(model_urls['ResNet18']))
         for param in model.parameters():

@@ -14,7 +14,11 @@ from tqdm import tqdm
 from models import *
 from utils import *
 
+import sys
 
+if not sys.warnoptions:
+    import warnings
+    warnings.simplefilter("ignore")
 
 model_name = "custom_animal"
 # CUSTOM, CIFAR10, MNIST
