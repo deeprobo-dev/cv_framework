@@ -93,7 +93,7 @@ def train_model(data_name, model_name, resume, device, norm, epochs, batch_size,
         train_loader, test_loader, classes = dataloaders("CUSTOM", train_batch_size=batch_size,
                                                         val_batch_size=batch_size,)
 
-        model = ResNet18(pretrained = True, num_classes = len(classes)).to(device)
+        model = ResNet18(pretrained = False, num_classes = len(classes)).to(device)
     image_shape = np.array(next(iter(train_loader))[0].shape[1:])                        
     print("\n\n****************************************************************************\n")
     print("*****Model Details*****\n")

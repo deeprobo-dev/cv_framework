@@ -1,7 +1,7 @@
 import torch.nn as nn
 import math
 import torch.utils.model_zoo as model_zoo
-
+import torch.nn.functional as F
 
 __all__ = ['ResNet', 'ResNet18', 'ResNet34', 'ResNet34', 'ResNet101',
            'ResNet152']
@@ -160,6 +160,21 @@ class ResNet(nn.Module):
 
         return x
 
+class FinetuneResnet(nn.Module):
+    def __init__(self, resnet_pretrain, num_classes):
+        super(FinetuneResnet, self).__init__()
+        self.resnet = resnet_pretrain
+        self.fc1 = nn.Linear(self.resnet.fc.out_features, 2048)
+        self.fc2 = nn.Linear(2048, num_classes)
+        self.dropout = nn.Dropout(0.3)
+    
+    def forward(self, x):
+        x = self.resnet(x)
+        x = F.relu(self.fc1(x))
+        x = self.dropout(x)
+        x = self.fc2(x)
+        return x
+
 
 def ResNet14(pretrained=False, **kwargs):
     """Constructs a ResNet-18 model.
@@ -168,8 +183,6 @@ def ResNet14(pretrained=False, **kwargs):
         pretrained (bool): If True, returns a model pre-trained on ImageNet
     """
     model = ResNet(BasicBlock, [1, 1, 1, 1], **kwargs)
-    model.fc2  = nn.Linear(1000, 1000)
-    model.fc3  = nn.Linear(1000, kwargs["num_classes"])
     if pretrained:
         raise RuntimeError("No pretrained resnet-14.")
     return model
@@ -185,8 +198,7 @@ def ResNet18(pretrained=False, **kwargs):
         model.load_state_dict(model_zoo.load_url(model_urls['ResNet18']))
         for param in model.parameters():
             param.requires_grad = True
-        model.fc2  = nn.Linear(1000, 1000)
-        model.fc3  = nn.Linear(1000, kwargs["num_classes"])
+    model = FinetuneResnet(model, kwargs["num_classes"])
     return model
 
 
